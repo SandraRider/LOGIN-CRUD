@@ -22,12 +22,16 @@ function Navbar(){
                         className="bg-indigo-500 px-4 py-1 rounded-sm">Agrega una tarea</Link>
                     </li>
                     <li>
-                        <Link to='/' onClick={()=>{
-                            logout();
+                        <Link to='/add-coach'
+                        className="bg-green-500 px-4 py-1 rounded-sm">Agregar entrenador</Link>
+                    </li>
+                    <li>
+                        <Link to='/' onClick={() => {
+                        logout();
                         }}>Cerrar Sesión</Link>
                     </li>
                     </>
-                ):(
+                ) : (
                     <>
                     <li>
                         <Link to='/login'
@@ -39,7 +43,7 @@ function Navbar(){
                     </li>
                     </>
                 )}
-            </ul>
+                </ul>
         </nav>
     )
 }

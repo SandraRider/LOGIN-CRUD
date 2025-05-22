@@ -100,3 +100,26 @@ export const AuthProvider=({children})=>{
         </AuthContext.Provider>
     )
 }
+
+export const CoachesContext = createContext();
+
+export const useCoaches = () => {
+  const context = useContext(CoachesContext);
+  if (!context) throw new Error("useCoaches debe usarse dentro de CoachesProvider");
+  return context;
+};
+
+export function CoachesProvider({ children }) {
+  const [coaches, setCoaches] = useState([]);
+
+  const createCoach = async (coach) => {
+    const res = await createCoachRequest(coach);
+    setCoaches([...coaches, res.data]);
+  };
+
+  return (
+    <CoachesContext.Provider value={{ coaches, createCoach }}>
+      {children}
+    </CoachesContext.Provider>
+  );
+}

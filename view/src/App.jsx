@@ -9,28 +9,31 @@ import { AuthProvider } from "./Context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import { TaskProvider } from "./Context/TasksContext";
 import Navbar from "./Components/Navbar";
+import CoachFormPage from "./Pages/CoachFormPage";
 
 function App(){
   return(
     <AuthProvider>
       <TaskProvider>
-      <BrowserRouter>
-        <main className="container mx-auto px-10">
-        <Navbar/>
-        <Routes>
-          <Route path='/' element={<HomePage/>}/>
-          <Route path='/login' element={<LoginPage/>}/>
-          <Route path='/register' element={<RegisterPage/>}/>
-          
-           <Route element={<ProtectedRoute/>}>
-            <Route path='/tasks' element={<TasksPage/>}/>
-            <Route path='/add-task' element={<TaskFormPage/>}/>
-            <Route path='/tasks/:id' element={<TaskFormPage/>}/>
-            <Route path='/profile' element={<ProfilePage/>}/>
-          </Route>
-          </Routes> 
-        </main>
-      </BrowserRouter>
+        <CoachesProvider>
+          <BrowserRouter>
+            <main className="container mx-auto px-10">
+              <Navbar/>
+              <Routes>
+                <Route path='/' element={<HomePage/>}/>
+                <Route path='/login' element={<LoginPage/>}/>
+                <Route path='/register' element={<RegisterPage/>}/>
+                <Route element={<ProtectedRoute/>}>
+                  <Route path='/tasks' element={<TasksPage/>}/>
+                  <Route path='/add-task' element={<TaskFormPage/>}/>
+                  <Route path='/tasks/:id' element={<TaskFormPage/>}/>
+                  <Route path='/profile' element={<ProfilePage/>}/>
+                  <Route path='/add-coach' element={<CoachFormPage/>}/>
+                </Route>
+              </Routes> 
+            </main>
+          </BrowserRouter>
+        </CoachesProvider>
       </TaskProvider>
     </AuthProvider>
   )
